@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+
+const WelcomeMessage = () => {
+  return <>
+    {/* Microsoft Windows [Version 11]<br /> */}
+    {/* TODO: fixed header? */}
+    (c) Web Terminal Corporation (Not a real corporation). All human rights reserved.<br /><br />
+    {/* TODO: bottom margin instead of br tags */}
+
+  </>
+}
+
+//TODO: hidden textarea out of render view + focus this etxtarea on lcick and render typeing result on screen
+
+/* 
+  TODO: 
+    clear
+    tree -> ascii tree art
+    credits
+    color foo var -> change bg and text color
+*/
+
+const TerminalString: React.FC<{ text: string }> = ({ text }) => {
+  return <div className='terminal-string'>
+    C:\Users\Guest\Desktop\web-terminal{`>`}
+    <div>{text.trim()}</div><span id='cursor'></span>
+
+  </div>
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <WelcomeMessage />
+      <TerminalString text={'text'} />
+    </>
   );
 }
 
