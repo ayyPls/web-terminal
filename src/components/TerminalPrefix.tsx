@@ -1,0 +1,1 @@
+export const TerminalPrefix = 'C:\\Users\\Guest\\react\\web-terminal>'

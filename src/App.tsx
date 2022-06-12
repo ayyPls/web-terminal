@@ -1,42 +1,56 @@
 import React from 'react';
 import './App.css';
+import { Welcome } from './components/commandResults/Welcome';
+import { TerminalHistory } from './components/TerminalHistory';
+import { TerminalInput } from './components/TerminalInput';
 
 
-const WelcomeMessage = () => {
-  return <>
-    {/* Microsoft Windows [Version 11]<br /> */}
-    {/* TODO: fixed header? */}
-    (c) Web Terminal Corporation (Not a real corporation). All human rights reserved.<br /><br />
-    {/* TODO: bottom margin instead of br tags */}
+export type ITerminalHistory = Array<string>
 
-  </>
-}
+const App: React.FC = () => {
+  const [terminalHistory, setTerminalHistory] = React.useState<ITerminalHistory>([])
 
-//TODO: hidden textarea out of render view + focus this etxtarea on lcick and render typeing result on screen
+  const [commandLine, setCommandLine] = React.useState('')
 
-/* 
-  TODO: 
-    clear
-    tree -> ascii tree art
-    credits
-    color foo var -> change bg and text color
-*/
+  const handleChange = (e: any) => { //TODO: types   
+    setCommandLine(e.target.value)
+  }
 
-const TerminalString: React.FC<{ text: string }> = ({ text }) => {
-  return <div className='terminal-string'>
-    C:\Users\Guest\Desktop\web-terminal{`>`}
-    <div>{text.trim()}</div><span id='cursor'></span>
+  const pushToTerminalHistory = (command: string) => {   
+    let temp = terminalHistory
+    temp.push(command)
+    setTerminalHistory(temp)
+    setCommandLine('')
+  }
+  //TODO: animation on page loading and on enter command line
 
-  </div>
-}
+  const handleInput = (e: KeyboardEvent) => {
+    /* 
+      TODO: show previous commands on arrow key up and down 
+    */
+    if (e.key.startsWith('Arrow')) e.preventDefault() //prevent caret movement
+    // TODO: types
+    // TODO: scroll to bottom after command enter
+    // @ts-ignore
+    else if (e.key === 'Enter') { e.preventDefault(); pushToTerminalHistory(e.target.value); e.target.value = '' }
 
-function App() {
+  }
+
+  React.useEffect(() => {   
+    const textarea = document.getElementById('textarea')
+    if (textarea) {
+      document.onclick = () => textarea.focus();
+      textarea.onkeydown = handleInput
+    }
+  }, [])
+
   return (
-    <>
-      <WelcomeMessage />
-      <TerminalString text={'text'} />
-    </>
+    <div id='terminal' >
+      <Welcome />
+      <TerminalHistory history={terminalHistory} />
+      <TerminalInput line={commandLine} />
+      <textarea id='textarea' onChange={handleChange} autoFocus></textarea>
+    </div>
   );
 }
-
 export default App;

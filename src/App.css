@@ -3,56 +3,83 @@
   margin: 0;
   box-sizing: border-box;
   /* font-family: Cascadia Mono monospace; */
+  font-family: monospace;
   font-size: 1rem;
+}
+
+:root{
+  --primary-dark: #282c34;
+  --primary-light: #fff; 
 }
 
 body {
-  background-color: #282c34;
-  color: white;
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
 }
 
-.terminal-string {
-  display: flex;
+::selection{
+  color: var(--primary-dark);
+  background-color: var(--primary-light);
+}
+
+
+a{
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.terminal-line{
+  white-space: break-spaces;
+  word-break: break-all;
+  padding-bottom: 1rem;
+
+}
+
+.welcome-message{
+  padding-bottom: 2rem;
 }
 
 .terminal-input {
-  background-color: #282c34;
-  color: white;
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
   font-size: 1rem;
   flex-grow: 1;
-  border: 1px solid red;
-  caret-color: auto;
   resize: none;
 }
 
-
-
-
-.terminal-input:before {
-  float: left;
-  content: C\:\Users\User\Desktop\web-terminal\>;
-
-}
 
 .terminal-input:focus {
   outline: none;
 }
 
 
-
-
-
-#cursor{
-  width: .5rem;
-  background-color: white;
-  animation: caret 2s 1s infinite ;
+#terminal{
+  padding: 10rem;
+  height: 100vh;
 }
 
-@keyframes caret {
-  0%{
+#textarea{
+  position: absolute;
+  top: -100%;
+}
+
+#caret {
+  display: inline-block;
+  width: .66rem;
+  height: .33rem;
+  background-color: var(--primary-light);
+  animation: caret-animation 1s 1s infinite;
+}
+
+
+/* TODO: show text animation */
+
+@keyframes caret-animation {
+  0% {
     opacity: 0;
   }
-  100%{
+
+  100% {
     opacity: 1;
   }
 }
