@@ -1,6 +1,8 @@
 import React from "react";
 import { ITerminalHistory } from "../App";
 import { About } from "./commandResults/About";
+import { Help } from "./commandResults/Help";
+import { Projects } from "./commandResults/Projects";
 import { UnknownCommand } from "./commandResults/UnknownCommand";
 import { TerminalLine } from "./TerminalLine";
 
@@ -10,7 +12,13 @@ export const TerminalHistory: React.FC<{ history: ITerminalHistory }> = ({ histo
         let result = <></>
         switch (command) {
             case 'about':
-                result = <About key={key} />
+                result = <About />
+                break;
+            case 'help':
+                result = <Help />
+                break;
+            case 'projects':
+                result = <Projects />
                 break;
             default:
                 result = <UnknownCommand command={command} />

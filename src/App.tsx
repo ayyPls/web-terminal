@@ -8,7 +8,7 @@ import { TerminalInput } from './components/TerminalInput';
 export type ITerminalHistory = Array<string>
 
 const App: React.FC = () => {
-  const [terminalHistory, setTerminalHistory] = React.useState<ITerminalHistory>([])
+  const [terminalHistory, setTerminalHistory] = React.useState<ITerminalHistory>([]) //TODO: reducer instead of state, bc clear should set array to empty
 
   const [commandLine, setCommandLine] = React.useState('')
 
