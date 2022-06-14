@@ -1,34 +1,16 @@
-import React from "react";
-import { ITerminalHistory } from "../App";
-import { About } from "./commandResults/About";
-import { Help } from "./commandResults/Help";
-import { Projects } from "./commandResults/Projects";
-import { UnknownCommand } from "./commandResults/UnknownCommand";
+import React, { useEffect } from "react";
+import { IHistoryState } from "../App";
 import { TerminalLine } from "./TerminalLine";
 
-export const TerminalHistory: React.FC<{ history: ITerminalHistory }> = ({ history }) => {
+export const TerminalHistory: React.FC<{ history: IHistoryState }> = ({ history }) => {
 
-    const getElementByCommandName = (command: string, key: number): JSX.Element => {  //TODO: redo into hook 
-        let result = <></>
-        switch (command) {
-            case 'about':
-                result = <About />
-                break;
-            case 'help':
-                result = <Help />
-                break;
-            case 'projects':
-                result = <Projects />
-                break;
-            default:
-                result = <UnknownCommand command={command} />
-        }
-        return <TerminalLine commandLine={command} output={result} key={key} />
-    }
+    useEffect(() => {
+        window.scrollTo({ left: 0, top: 100000, behavior: 'smooth' }) //scroll to the bottom of page
+    }, [history])
 
     return <>
         {
-            history.map((command, index) => { return getElementByCommandName(command, index) })
+            history.map((element, index) => { return <TerminalLine commandLine={element.command} output={element.element} key={index} /> })
         }
     </>
 }

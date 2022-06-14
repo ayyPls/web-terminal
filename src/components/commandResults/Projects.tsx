@@ -2,6 +2,7 @@
 export const Projects = () => {
     return <div className="terminal-list">
         {/* TODO: responsive border from chars (mysql cmd)*/}
+        <div>Here is a list of my pet projects:</div>
         <li>
             <div>web terminal app - you are already here, good job!</div>
             <div className="project-description">

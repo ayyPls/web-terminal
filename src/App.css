@@ -60,8 +60,10 @@ a {
 }
 
 #textarea {
-  position: absolute;
-  top: -100%;
+  /* position: absolute; 
+  top: -100%; */
+  position: relative;
+  left: -100%;
 }
 
 #caret {
