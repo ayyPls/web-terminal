@@ -4,7 +4,7 @@ export const Projects = () => {
         {/* TODO: responsive border from chars (mysql cmd)*/}
         <div>Here is a list of my pet projects:</div>
         <li>
-            <div>web terminal app - you are already here, good job!</div>
+            <div>web terminal app - you are already here, nice!</div>
             <div className="project-description">
                 <div>link: <a href="#" target="_blank">link</a></div>
                 <div>git: <a href="https://github.com/ayyPls/web-terminal" target="_blank">https://github.com/ayyPls/web-terminal</a></div>
@@ -18,5 +18,14 @@ export const Projects = () => {
                 <div>git: <a href="https://github.com/ayyPls/emojify" target="_blank">https://github.com/ayyPls/emojify</a></div>
             </div>
         </li>
+        <li>
+            <div>vk test app - find gif using GIPHY API</div>
+            <div className="project-description">
+                <div>link: <a href="https://vk-test-project.herokuapp.com" target="_blank ">https://vk-test-project.herokuapp.com</a></div>
+                <div>git: <a href="https://github.com/ayyPls/vk-test-app" target="_blank">https://github.com/ayyPls/vk-test-app</a></div>
+            </div>
+        </li>
+
+        {/* добавить вк гифки  */}
     </div>
 }

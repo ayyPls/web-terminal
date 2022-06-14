@@ -8,9 +8,9 @@ export const TerminalHistory: React.FC<{ history: IHistoryState }> = ({ history 
         window.scrollTo({ left: 0, top: 100000, behavior: 'smooth' }) //scroll to the bottom of page
     }, [history])
 
-    return <>
+    return <div>
         {
             history.map((element, index) => { return <TerminalLine commandLine={element.command} output={element.element} key={index} /> })
         }
-    </>
+    </div>
 }

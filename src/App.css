@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* font-family: Cascadia Mono monospace; */
   font-family: monospace;
   font-size: 1rem;
 }
@@ -10,23 +9,32 @@
 :root {
   --primary-dark: #282c34;
   --primary-light: #fff;
-  --link-default: #3c3cff;
+  --link-default: #5690fa;
+
+  --terminal-bg: var(--primary-dark);
+  --terminal-color: var(--primary-light);
+  --link-color: var(--link-default);
+  --link-bg-color: var(var(--primary-light))
 }
 
-body {
-  background-color: var(--primary-dark);
-  color: var(--primary-light);
+body{
+  background-color: var(--terminal-bg);
+  color: var(--terminal-color);
 }
 
 ::selection {
-  color: var(--primary-dark);
-  background-color: var(--primary-light);
+  color: var(--terminal-bg);
+  background-color: var(--terminal-color);
 }
 
+#welcome{
+  background-color: var(--terminal-color);
+  color: var(--terminal-bg);
+}
 
 a {
-  background-color: var(--primary-light);
-  color: var(--primary-dark);
+  background-color: var(--terminal-bg);
+  color: var(--link-color);
 }
 
 .terminal-line {
@@ -41,27 +49,24 @@ a {
 }
 
 .terminal-input {
-  background-color: var(--primary-dark);
-  color: var(--primary-light);
+  background-color: var(--terminal-bg);
+  color: var(--terminal-color);
   font-size: 1rem;
   flex-grow: 1;
   resize: none;
 }
 
-
 .terminal-input:focus {
   outline: none;
 }
 
-
 #terminal {
   padding: 10rem;
   height: 100vh;
+  color: var(--terminal-color);
 }
 
 #textarea {
-  /* position: absolute; 
-  top: -100%; */
   position: relative;
   left: -100%;
 }
@@ -70,10 +75,9 @@ a {
   display: inline-block;
   width: .66rem;
   height: .33rem;
-  background-color: var(--primary-light);
+  background-color: var(--terminal-color);
   animation: caret-animation 1s 1s infinite;
 }
-
 
 /* TODO: show text animation */
 
@@ -87,26 +91,22 @@ a {
   }
 }
 
-
-
 .terminal-list {
   display: block;
 }
 
-li {
-  list-style: none;
-}
-
 .terminal-list>li {
+  list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 1rem;
   gap: 1rem;
-  border: 2px dashed var(--primary-light);
+  border: 2px dashed var(--terminal-color);
 }
 
 
-.project-description a {
-  background-color: var(--primary-dark);
-  color: var(--link-default);
+
+span{
+  background-color: var(--link-bg-color);
+  color: var(--link-color);
 }
