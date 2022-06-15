@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './App.css';
 import { About } from './components/commandResults/About';
 import { Color } from './components/commandResults/Color';
@@ -45,9 +45,23 @@ const historyReducer = (state: IHistoryState, action: IAction): IHistoryState =>
     const [cmd, bgColor, textColor] = command.split(' ').filter(str => str !== '')
 
     switch (bgColor) {
-      case 'yellow': { document.documentElement.style.setProperty('--terminal-bg', ColorScheme.yellow); break; }
-      case 'blue': { document.documentElement.style.setProperty('--terminal-bg', ColorScheme.lightBlue); document.documentElement.style.setProperty('--link-color', ColorScheme.primaryLight); document.documentElement.style.setProperty('--link-bg-color', ColorScheme.darkBlue);break; }
-      default: { document.documentElement.style.setProperty('--terminal-bg', ColorScheme.primaryDark); document.documentElement.style.setProperty('--link-color', ColorScheme.lightBlue);}
+      case 'yellow': {
+        document.documentElement.style.setProperty('--terminal-bg', ColorScheme.yellow);
+        document.documentElement.style.setProperty('--link-color', ColorScheme.yellow);
+        document.documentElement.style.setProperty('--link-bg-color', ColorScheme.primaryLight);
+        break;
+      }
+      case 'blue': {
+        document.documentElement.style.setProperty('--terminal-bg', ColorScheme.lightBlue);
+        document.documentElement.style.setProperty('--link-color', ColorScheme.lightBlue);
+        document.documentElement.style.setProperty('--link-bg-color', ColorScheme.primaryLight);
+        break;
+      }
+      default: {
+        document.documentElement.style.setProperty('--terminal-bg', ColorScheme.primaryDark);
+        document.documentElement.style.setProperty('--link-color', ColorScheme.lightBlue);
+        document.documentElement.style.setProperty('--link-bg-color', ColorScheme.primaryDark);
+      }
     }
 
   }
@@ -73,10 +87,6 @@ const App: React.FC = () => {
   const [history, historyDispatch] = React.useReducer(historyReducer, initialHistoryState)
   const [commandLine, setCommandLine] = React.useState('')
 
-  const handleChange = (e: any) => { //TODO: types   
-    setCommandLine(e.target.value)
-  }
-
   const pushToTerminalHistory = (command: string) => {
     historyDispatch({ type: command, payload: command })
     setCommandLine('')
@@ -84,22 +94,22 @@ const App: React.FC = () => {
 
   //TODO: animation on page loading and on enter command line
 
-  const handleInput = (e: KeyboardEvent) => {
+  const handleInput = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     /* 
       TODO: show previous commands on arrow key up and down 
     */
     if (e.key.startsWith('Arrow')) e.preventDefault() //prevent caret movement
-    // TODO: types
-    // TODO: scroll to bottom after command enter
-    // @ts-ignore
-    else if (e.key === 'Enter') { e.preventDefault(); pushToTerminalHistory(e.target.value); e.target.value = ''; }
+    else if (e.key === 'Enter') {
+      e.preventDefault();
+      pushToTerminalHistory(e.currentTarget.value);
+      e.currentTarget.value = '';
+    }
   }
 
   React.useEffect(() => {
     const textarea = document.getElementById('textarea')
     if (textarea) {
       document.onclick = () => { textarea.focus({ preventScroll: true }); }
-      textarea.onkeydown = handleInput
     }
   }, [])
 
@@ -107,7 +117,7 @@ const App: React.FC = () => {
     <div id='terminal'>
       <TerminalHistory history={history} />
       <TerminalInput line={commandLine} />
-      <textarea id='textarea' onChange={handleChange} autoFocus></textarea>
+      <textarea id='textarea' onChange={(e) => setCommandLine(e.target.value)} onKeyDown={handleInput} autoFocus></textarea>
     </div>
   );
 }

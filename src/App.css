@@ -32,10 +32,10 @@ body{
   color: var(--terminal-bg);
 }
 
-a {
+/* a, span {
   background-color: var(--terminal-bg);
   color: var(--link-color);
-}
+} */
 
 .terminal-line {
   white-space: break-spaces;
@@ -106,7 +106,7 @@ a {
 
 
 
-span{
+a, span{
   background-color: var(--link-bg-color);
   color: var(--link-color);
 }

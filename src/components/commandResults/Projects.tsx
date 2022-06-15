@@ -25,7 +25,12 @@ export const Projects = () => {
                 <div>git: <a href="https://github.com/ayyPls/vk-test-app" target="_blank">https://github.com/ayyPls/vk-test-app</a></div>
             </div>
         </li>
-
-        {/* добавить вк гифки  */}
+        <li>
+            <div>first react project - simple online shop website</div>
+            <div className="project-description">
+                <div>link: <a href="https://ipst.herokuapp.com" target="_blank ">https://ipst.herokuapp.com</a></div>
+                <div>git: <a href="https://github.com/ayyPls/ipst" target="_blank">https://github.com/ayyPls/ipst</a></div>
+            </div>
+        </li>
     </div>
 }
