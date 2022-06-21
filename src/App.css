@@ -32,16 +32,10 @@ body{
   color: var(--terminal-bg);
 }
 
-/* a, span {
-  background-color: var(--terminal-bg);
-  color: var(--link-color);
-} */
-
 .terminal-line {
   white-space: break-spaces;
   word-break: break-all;
   padding-bottom: 1rem;
-
 }
 
 .welcome-message {
@@ -61,7 +55,7 @@ body{
 }
 
 #terminal {
-  padding: 10rem;
+  padding: 5rem;
   height: 100vh;
   color: var(--terminal-color);
 }

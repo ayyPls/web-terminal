@@ -4,7 +4,6 @@ export const Color = ()=>{
     List of available color schemes:<br/>
     <span>yellow</span><br/>
     <span>blue</span><br/>
-    <span>pink</span><br/>
     Note: Provide no attribute to set default color scheme<br/>
     </div>
 }

@@ -5,7 +5,7 @@ export const Help = () => {
         <span>color</span> - change terminal color scheme<br />
         <span>help</span> - list of availble commands<br />
         <span>projects</span> - see my projects list<br />
-        <span>skills</span> - look at my skills list<br />
-        <span>ayyPls</span> - some ascii animation{')'}<br />
+        <span>social</span> - list of my social links<br/>
+        <span>welcome</span> - print welcome message<br />
     </div>
 }
