@@ -90,29 +90,51 @@ const App: React.FC = () => {
   const [history, historyDispatch] = React.useReducer(historyReducer, initialHistoryState)
   const [commandLine, setCommandLine] = React.useState('')
 
+  const [index, setIndex] = React.useState<number | undefined>(undefined)
+
+
   const pushToTerminalHistory = (command: string) => {
     historyDispatch({ type: command, payload: command })
     setCommandLine('')
   }
 
+  React.useEffect(() => {
+    console.log(index, history.length - 1);
+
+  }, [index])
+
   //TODO: animation on page loading and on enter command line
 
   const handleInput = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    /* 
-      TODO: show previous commands on arrow key up and down 
-    */
-    if (e.key.startsWith('Arrow')) e.preventDefault() //prevent caret movement
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-      e.preventDefault()
 
+    if (e.key.startsWith('Arrow')) e.preventDefault() //prevent caret movement
+    if (e.key === 'ArrowUp') {
+      if (index !== undefined && history[index]) {
+        if (index > 0) {
+          setCommandLine(history[index - 1].command)
+          e.currentTarget.value = history[index - 1].command
+          setIndex(index - 1)
+        }
+      }
       e.stopPropagation()
     }
-    else
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        pushToTerminalHistory(e.currentTarget.value);
-        e.currentTarget.value = '';
+    if (e.key === 'ArrowDown') {
+      if (index !== undefined && history[index + 1]) {
+        if (index < history.length) {
+          setCommandLine(history[index + 1].command)
+          e.currentTarget.value = history[index + 1].command
+          setIndex(index + 1)
+        }
       }
+      e.stopPropagation()
+    }
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      pushToTerminalHistory(e.currentTarget.value);
+      e.currentTarget.value = '';
+      setIndex(history.length)
+    }
   }
 
   React.useEffect(() => {
