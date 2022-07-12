@@ -87,6 +87,7 @@ const historyReducer = (state: IHistoryState, action: IAction): IHistoryState =>
 }
 
 const App: React.FC = () => {
+
   const [history, historyDispatch] = React.useReducer(historyReducer, initialHistoryState)
   const [commandLine, setCommandLine] = React.useState('')
 
@@ -97,11 +98,6 @@ const App: React.FC = () => {
     historyDispatch({ type: command, payload: command })
     setCommandLine('')
   }
-
-  React.useEffect(() => {
-    console.log(index, history.length - 1);
-
-  }, [index])
 
   //TODO: animation on page loading and on enter command line
 

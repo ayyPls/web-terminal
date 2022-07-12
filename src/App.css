@@ -55,14 +55,14 @@ body{
 }
 
 #terminal {
-  padding: 5rem;
+  padding: 2rem;
   height: 100vh;
   color: var(--terminal-color);
 }
 
 #textarea {
   position: relative;
-  left: -100%;
+  left: -1000%;
 }
 
 #caret {
